@@ -2,9 +2,9 @@
 android viewpager which can auto scroll at specific interval
 可以定时滚动的轮播推荐  viewpager
 
-viewpager uses 使用 [CircleIndicator](https://github.com/ongakuer/CircleIndicator) | [MIT](http://opensource.org/licenses/MIT) | <img src="/art/CircleIndicator.gif" width="49%">
+viewpager uses 使用 [CircleIndicator](https://github.com/ongakuer/CircleIndicator)
 
-![image](https://github.com/JackWong025/Android_custom_ratingbarview/blob/android-auto-scroll-viewpager/sample.gif)
+![image](https://github.com/JackWong025/android-auto-scroll-viewpager/blob/android-auto-scroll-viewpager/sample.gif)
 
 ### Usage
 
