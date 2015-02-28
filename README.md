@@ -4,41 +4,48 @@ android viewpager which can auto scroll at specific interval
 
 viewpager uses 使用 [CircleIndicator](https://github.com/ongakuer/CircleIndicator)
 
-![image](https://github.com/JackWong025/android-auto-scroll-viewpager/blob/android-auto-scroll-viewpager/sample.gif)
+![image](https://github.com/JackWong025/android-auto-scroll-viewpager/blob/master/sample.gif)
 
-### Usage
+#### In Xml
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#cccccc" />
+    
+    
+        <com.bao.android_auto_scroll_viewpager.CircleIndicator
+            android:id="@+id/indicator"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    
+    
+    </RelativeLayout>
 
-#### In XML  Directly
 
-    <com.bao.android_custom_ratingbarview.RatingBarView
-        android:id="@+id/starView"
-        bao:starImageSize = "22dp"
-        bao:starCount = "7"
-        bao:starEmpty = "@drawable/icon_star_empty"
-        bao:starFill = "@drawable/icon_star_fill"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </com.bao.android_custom_ratingbarview.RatingBarView>
+
     
 #### In Java Code
 
-        RatingBarView ratingBarView = (RatingBarView)findViewById(R.id.starView);
-        ratingBarView.setmClickable(true);
-        //you can set up view here or in XML
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        CircleIndicator circleIndicator = (CircleIndicator) findViewById(R.id.indicator);
+        ImagePagerAdapter imagePagerAdapter = new ImagePagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(imagePagerAdapter);
 
-        //ratingBarView.setStarCount(5);
-        //ratingBarView.setStarEmptyDrawable(...);
-        //ratingBarView.setStarFillDrawable(...);
-        //ratingBarView.setStarImageSize();
-
-        //bind some data
-        ratingBarView.setBindObject(1);
-        ratingBarView.setOnRatingListener(new RatingBarView.OnRatingListener() {
-            @Override
-            public void onRating(Object bindObject,int RatingScore) {
-                Toast.makeText(MainActivity.this ,"bindObject : "+bindObject,Toast.LENGTH_SHORT).show();
-            }
-        });
+        //按如下顺序配置定时器
+        circleIndicator.setViewPager(viewPager);
+        pagerScheduleProxy = new PagerScheduleProxy(viewPager, 2); //param 2 is interval(s)
+        circleIndicator.setOnPageChangeListener(pagerScheduleProxy.getOnPageChangeListener());
 
 
